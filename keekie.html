@@ -1,0 +1,108 @@
+<header>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'lifestylebykiki.myshopify.com',
+      apiKey: '87fe2c0aea11837b35e266b62c14b977',
+      appId: '6',
+    });
+
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('collection', {
+        id: 397565897,
+        node: document.getElementById('collection-component-9ffba5fcf7c'),
+        moneyFormat: '%7B%7Bamount%7D%7D%20%E0%B8%BF',
+        options: {
+  "product": {
+    "variantId": "all",
+    "contents": {
+      "imgWithCarousel": false,
+      "variantTitle": false,
+      "description": false,
+      "buttonWithQuantity": false,
+      "quantity": false
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px"
+        }
+      }
+    }
+  },
+  "cart": {
+    "contents": {
+      "button": true
+    },
+    "styles": {
+      "footer": {
+        "background-color": "#ffffff"
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "variantTitle": false,
+      "buttonWithQuantity": true,
+      "button": false,
+      "quantity": false
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      }
+    }
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  }
+}
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+  <h2 class="font_2" style="font-size:26px;"><span style="font-family:comic sans ms,comic-sans-w01-regular,comic-sans-w02-regular,comic-sans-w10-regular,cursive;"><span style="font-size:26px;"><span style="letter-spacing:0em;">LINE ID:&nbsp;</span></span></span><span style="font-family:comic sans ms,comic-sans-w01-regular,comic-sans-w02-regular,comic-sans-w10-regular,cursive;"><span style="font-size:26px;"><span style="letter-spacing:0em;">keekie333&nbsp;</span></span></span></h2>
+  <div id='collection-component-9ffba5fcf7c'></div>
+</header>
+<body>
+
+</body>
