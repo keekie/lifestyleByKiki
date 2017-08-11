@@ -3,7 +3,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
-<script src="initChat.js"></script>
 
 <script type="text/javascript">
 
@@ -129,9 +128,10 @@ function createComp(ui, id, collectionId) {
   <script src="script.js"></script>
   <div id='cssmenu'>
   <ul>
-     <li id="component-1" class='active'><a id="c-1" href='#'>Items</a></li>
-     <li id="component-2"><a href='#'>Items 25 baht</a></li>
-     <li id="component-3" ><a href='#'>Sets</a></li>
+     <li id="component-1" class='active site-menu'><a id="c-1" href='#'>Items</a></li>
+     <li id="component-2" class='site-menu'><a href='#'>Items 25 baht</a></li>
+     <li id="component-3" class='site-menu'><a href='#'>Sets</a></li>
+     <li id="login" style="float: right"><a href='#' onclick="lock.show();">Log-In/Register</a></li>
   </ul>
   </div>
 
@@ -169,9 +169,20 @@ function createComp(ui, id, collectionId) {
   </script>
 
 
+<script src="http://cdn.auth0.com/js/lock/10.19.0/lock.min.js"></script>
+
+<script>
+var lock = new Auth0Lock(
+  '8qLPah2v1UWOi8HJVVf1MMDoBWYZj4R4',
+  'dk14.auth0.com'
+);
+
+
+</script>
 
 </header>
 <body>
+
 
     <div id='collection-component-1' class="comp"/></div>
     <div id='collection-component-2' class="comp"/></div>
@@ -188,5 +199,4 @@ function createComp(ui, id, collectionId) {
         </div>
       </a>
     </div>
-
 </body>

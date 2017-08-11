@@ -129,11 +129,11 @@ ShopifyBuy.UI.onReady(client).then(function(ui){
           document.getElementById('line').style.display = 'block'
         }
 
-        $("#cssmenu a").each(function() {
+        $(".site-menu a").each(function() {
         	var linkTitle = $(this).text();
         	$(this).attr('data-title', linkTitle);
           $(this).click(function(){
-            $("#cssmenu li").each(function() {
+            $(".site-menu").each(function() {
               $(this).removeClass('active')
             })
             $(".comp").each(function() {
