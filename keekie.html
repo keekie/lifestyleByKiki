@@ -131,7 +131,7 @@ function createComp(ui, id, collectionId) {
      <li id="component-1" class='active site-menu'><a id="c-1" href='#'>Items</a></li>
      <li id="component-2" class='site-menu'><a href='#'>Items 25 baht</a></li>
      <li id="component-3" class='site-menu'><a href='#'>Sets</a></li>
-     <li id="login" style="float: right"><a href='#' onclick="lock.show();">Log-In/Register</a></li>
+     <li id="login" style="float: right"><a href='#' onclick="lock.show();">Connect Social</a></li>
      <li id="welcome" style="float: right;display: none"><a href='#'>Welcome <span id="nick" class="nickname"></a></span></li>
   </ul>
   </div>
@@ -178,11 +178,21 @@ var lock = new Auth0Lock(
   'dk14.auth0.com'
 );
 
+function httpGetAsync(theUrl){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.send(null);
+}
 
-function welcome(name){
+
+function welcome(name, isNew){
   document.getElementById('welcome').style.display = 'block';
   document.getElementById('login').style.display = 'none';
   document.getElementById('nick').textContent = name;
+  if (isNew){
+    httpGetAsync('https://api.telegram.org/bot443908351:AAHEG1Zx4NpAedSVZAzSSF8U8ZvUX8KWkZk/sendMessage?chat_id=410125989&text=userLogin:' + name)
+  }
+
 }
 
 lock.on("authenticated", function(authResult) {
@@ -193,7 +203,7 @@ lock.on("authenticated", function(authResult) {
       return;
     }
 
-    welcome(profile.nickname)
+    welcome(profile.nickname, true)
 
     localStorage.setItem('accessToken', authResult.accessToken);
     localStorage.setItem('profile', JSON.stringify(profile));
@@ -202,7 +212,7 @@ lock.on("authenticated", function(authResult) {
 });
 
 if (localStorage.getItem('nickname')){
-  welcome(localStorage.getItem('nickname'))
+  welcome(localStorage.getItem('nickname'), false)
 }
 
 
