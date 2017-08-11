@@ -97,6 +97,8 @@
 
               if(id == 'collection-component-1') {
                 document.getElementById('loading').innerText = "";
+              } else {
+               document.getElementById(id).style.display = "none";
               }
             },
             'afterInit': function(component){
