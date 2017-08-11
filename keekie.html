@@ -132,6 +132,7 @@ function createComp(ui, id, collectionId) {
      <li id="component-2" class='site-menu'><a href='#'>Items 25 baht</a></li>
      <li id="component-3" class='site-menu'><a href='#'>Sets</a></li>
      <li id="login" style="float: right"><a href='#' onclick="lock.show();">Log-In/Register</a></li>
+     <li id="welcome" style="float: right;display: none">Welcome <span id="nick" class="nickname"></span></li>
   </ul>
   </div>
 
@@ -176,6 +177,23 @@ var lock = new Auth0Lock(
   '8qLPah2v1UWOi8HJVVf1MMDoBWYZj4R4',
   'dk14.auth0.com'
 );
+
+lock.on("authenticated", function(authResult) {
+  // Use the token in authResult to getUserInfo() and save it to localStorage
+  lock.getUserInfo(authResult.accessToken, function(error, profile) {
+    if (error) {
+      // Handle error
+      return;
+    }
+
+    document.getElementById('welcome').style.display = 'block';
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('nick').textContent = profile.nickname;
+
+    localStorage.setItem('accessToken', authResult.accessToken);
+    localStorage.setItem('profile', JSON.stringify(profile));
+  });
+});
 
 
 </script>
