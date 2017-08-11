@@ -96,6 +96,7 @@
 (function($){
 $(document).ready(function(){
 
+$(document).ready(function() {
   $("#cssmenu").menumaker({
     title: "Menu",
     format: "dropdown"
@@ -117,5 +118,7 @@ $(document).ready(function(){
       $("#collection-" + $(this).parent('li').attr('id')).show()
     });
   });
+});
+
 });
 })(jQuery);
