@@ -103,7 +103,7 @@ $(document).ready(function() {
   });
 
   $('#menu-button').trigger('click')
-  $('#collection-component-1').trigger('click')
+  $('#collection-component-1 a').trigger('click')
 
   $("#cssmenu a").each(function() {
   	var linkTitle = $(this).text();
