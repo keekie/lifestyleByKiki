@@ -178,6 +178,13 @@ var lock = new Auth0Lock(
   'dk14.auth0.com'
 );
 
+
+function welcome(name){
+  document.getElementById('welcome').style.display = 'block';
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('nick').textContent = name;
+}
+
 lock.on("authenticated", function(authResult) {
   // Use the token in authResult to getUserInfo() and save it to localStorage
   lock.getUserInfo(authResult.accessToken, function(error, profile) {
@@ -186,14 +193,18 @@ lock.on("authenticated", function(authResult) {
       return;
     }
 
-    document.getElementById('welcome').style.display = 'block';
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('nick').textContent = profile.nickname;
+    welcome(profile.nickname)
 
     localStorage.setItem('accessToken', authResult.accessToken);
     localStorage.setItem('profile', JSON.stringify(profile));
+    localStorage.setItem('nickname', profile.nickname);
   });
 });
+
+if (localStorage.getItem('nickname')){
+  welcome(localStorage.getItem('nickname'))
+}
+
 
 
 </script>
