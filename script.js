@@ -102,6 +102,8 @@ $(document).ready(function() {
     format: "dropdown"
   });
 
+  $('#menu-button').trigger('click')
+
 
 
   $("#cssmenu a").each(function() {
