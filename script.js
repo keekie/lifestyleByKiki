@@ -93,33 +93,53 @@
   };
 })(jQuery);
 
-(function($){
-$(document).ready(function(){
+ShopifyBuy.UI.onReady(client).then(function(ui){
 
-$(document).ready(function() {
-  $("#cssmenu").menumaker({
-    title: "Menu",
-    format: "dropdown"
-  });
 
-  $('#menu-button').trigger('click')
-  $('#collection-component-1 a').trigger('click')
 
-  $("#cssmenu a").each(function() {
-  	var linkTitle = $(this).text();
-  	$(this).attr('data-title', linkTitle);
-    $(this).click(function(){
-      $("#cssmenu li").each(function() {
-        $(this).removeClass('active')
-      })
-      $(".comp").each(function() {
-        $(this).hide()
-      })
-      $(this).parent('li').toggleClass('active')
-      $("#collection-" + $(this).parent('li').attr('id')).show()
+
+  (function($){
+    $(document).ready(function(){
+
+      $(document).ready(function() {
+        $("#cssmenu").menumaker({
+          title: "Menu",
+          format: "dropdown"
+        });
+
+        createComp(ui, 'collection-component-1', collections['collection-component-1'])
+
+        $('#menu-button').trigger('click')
+        //$('#c-1').trigger('click')
+
+        $("#cssmenu a").each(function() {
+        	var linkTitle = $(this).text();
+        	$(this).attr('data-title', linkTitle);
+          $(this).click(function(){
+            $("#cssmenu li").each(function() {
+              $(this).removeClass('active')
+            })
+            $(".comp").each(function() {
+              $(this).hide()
+            })
+            $(this).parent('li').toggleClass('active')
+            var collectionDivId = "collection-" + $(this).parent('li').attr('id')
+            var collectionDiv = $('#' + collectionDiv)
+            if(!document.getElementById(collectionDivId).innerHTML){
+              //alert(document.getElementById(collectionDivId).innerHTML)
+              $('#loading').show();
+              createComp(ui, collectionDivId, collections[collectionDivId])
+            } else {
+              document.getElementById(collectionDivId).style.display = 'block'
+            }
+
+          });
+
+
+        });
+      });
+
     });
-  });
-});
 
+  })(jQuery);
 });
-})(jQuery);

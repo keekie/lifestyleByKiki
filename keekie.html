@@ -1,138 +1,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <header>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+
 <script type="text/javascript">
 
 /*<![CDATA[*/
 
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) {
-      ShopifyBuyInit();
-    } else {
-      loadScript();
-    }
-  } else {
-    loadScript();
-  }
 
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
+var collections = {
+  'collection-component-1': 398249865,
+  'collection-component-2': 398023689,
+  'collection-component-3': 398249737
+};
 
+var client = ShopifyBuy.buildClient({
+  domain: 'lifestylebykiki.myshopify.com',
+  apiKey: '87fe2c0aea11837b35e266b62c14b977',
+  appId: '6',
+});
 
-
-  function createComp(ui, id, collectionId) {
-    ui.createComponent('collection', {
-      id: collectionId,
-      node: document.getElementById(id),
-      moneyFormat: '%7B%7Bamount%7D%7D%20%E0%B8%BF',
-      options: {
-        "product": {
-          "variantId": "all",
-          "contents": {
-            "imgWithCarousel": false,
-            "variantTitle": false,
-            "description": false,
-            "buttonWithQuantity": false,
-            "quantity": false,
-            "button": false
-          },
-          "styles": {
-            "product": {
-              "@media (min-width: 601px)": {
-                "max-width": "calc(25% - 20px)",
-                "margin-left": "20px",
-                "margin-bottom": "50px"
-              }
-            }
-          },
-          "isButton": true,
-          "buttonDestination": "modal"
+function createComp(ui, id, collectionId) {
+  return ui.createComponent('collection', {
+    id: collectionId,
+    node: document.getElementById(id),
+    moneyFormat: '%7B%7Bamount%7D%7D%20%E0%B8%BF',
+    options: {
+      "product": {
+        "variantId": "all",
+        "contents": {
+          "imgWithCarousel": false,
+          "variantTitle": false,
+          "description": false,
+          "buttonWithQuantity": false,
+          "quantity": false,
+          "button": false
         },
-        "cart": {
-          "contents": {
-            "button": true
-          },
-          "styles": {
-            "footer": {
-              "background-color": "#ffffff"
+        "styles": {
+          "product": {
+            "@media (min-width: 601px)": {
+              "max-width": "calc(25% - 20px)",
+              "margin-left": "20px",
+              "margin-bottom": "50px"
             }
           }
         },
-        "modalProduct": {
-          "contents": {
-            "img": false,
-            "imgWithCarousel": true,
-            "variantTitle": false,
-            "buttonWithQuantity": true,
-            "button": false,
-            "quantity": false
-          },
-          "styles": {
-            "product": {
-              "@media (min-width: 601px)": {
-                "max-width": "100%",
-                "margin-left": "0px",
-                "margin-bottom": "0px"
-              }
-            }
-          }
+        "isButton": true,
+        "buttonDestination": "modal"
+      },
+      "cart": {
+        "contents": {
+          "button": true
         },
-        "productSet": {
-          "styles": {
-            "products": {
-              "@media (min-width: 601px)": {
-                "margin-left": "-20px"
-              }
-            }
-          },
-          "events": {
-            'afterRender': function(component){
-
-              if(id == 'collection-component-1') {
-                document.getElementById('loading').innerText = "";
-              } else {
-               document.getElementById(id).style.display = "none";
-              }
-              document.getElementById('collection-component-2').style.display = "none";
-              document.getElementById('collection-component-3').style.display = "none";
-            },
-            'afterInit': function(component){
-              if(id != 'collection-component-1'){
-               document.getElementById(id).style.display = "none";
-              }
+        "styles": {
+          "footer": {
+            "background-color": "#ffffff"
+          }
+        }
+      },
+      "modalProduct": {
+        "contents": {
+          "img": false,
+          "imgWithCarousel": true,
+          "variantTitle": false,
+          "buttonWithQuantity": true,
+          "button": false,
+          "quantity": false
+        },
+        "styles": {
+          "product": {
+            "@media (min-width: 601px)": {
+              "max-width": "100%",
+              "margin-left": "0px",
+              "margin-bottom": "0px"
             }
           }
         }
+      },
+      "productSet": {
+        "styles": {
+          "products": {
+            "@media (min-width: 601px)": {
+              "margin-left": "-20px"
+            }
+          }
+        },
+        "events": {
+          'afterRender': function(component){
+            $('#loading').hide();
+            $('#' + id).show();
+          }
+        }
       }
-    });
-  }
-
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'lifestylebykiki.myshopify.com',
-      apiKey: '87fe2c0aea11837b35e266b62c14b977',
-      appId: '6',
-    });
-
-    ShopifyBuy.UI.onReady(client).then(function(ui){
-
-      createComp(ui, 'collection-component-1', 398249865)
-
-      createComp(ui, 'collection-component-2', 398023689)
-
-      createComp(ui, 'collection-component-3', 398249737)
+    }
+  });
+}
 
 
-    });
-  }
-})();
+
 /*]]>*/
 </script>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
@@ -158,12 +124,11 @@
   </h1>
 
   <link rel="stylesheet" href="styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="script.js"></script>
   <div id='cssmenu'>
   <ul>
-     <li id="component-1" class='active'><a href='#'>Items</a></li>
+     <li id="component-1" class='active'><a id="c-1" href='#'>Items</a></li>
      <li id="component-2"><a href='#'>Items 25 baht</a></li>
      <li id="component-3" ><a href='#'>Sets</a></li>
   </ul>
@@ -187,9 +152,9 @@
 
 </header>
 <body>
-  <div>
-    <div id='collection-component-1' class="comp"></div>
-    <div id='collection-component-2' class="comp"></div>
-    <div id='collection-component-3' class="comp"></div>
-  </div>
+
+    <div id='collection-component-1' class="comp"/></div>
+    <div id='collection-component-2' class="comp"/></div>
+    <div id='collection-component-3' class="comp"/></div>
+
 </body>
