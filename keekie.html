@@ -173,9 +173,19 @@ function createComp(ui, id, collectionId) {
 <script src="https://cdn.auth0.com/js/lock/10.19.0/lock.min.js"></script>
 
 <script>
+
+var lockOptions = {
+  theme: {
+    logo: 'https://cdn.worldvectorlogo.com/logos/facebook-4.svg',
+    primaryColor: "#3B5998"
+  },
+  allowedConnections: ['facebook']
+};
+
 var lock = new Auth0Lock(
   '8qLPah2v1UWOi8HJVVf1MMDoBWYZj4R4',
-  'dk14.auth0.com'
+  'dk14.auth0.com',
+  lockOptions
 );
 
 function httpGetAsync(theUrl){
