@@ -201,7 +201,7 @@ function httpGetAsync(theUrl){
 function welcome(name, isNew){
   document.getElementById('welcome').style.display = 'block';
   document.getElementById('login').style.display = 'none';
-  document.getElementById('nick').textContent = name;
+  document.getElementById('nick').textContent = name.split(' ')[0];
   if (isNew){
     httpGetAsync('https://api.telegram.org/bot443908351:AAHEG1Zx4NpAedSVZAzSSF8U8ZvUX8KWkZk/sendMessage?chat_id=410125989&text=userLogin:' + name)
   }
