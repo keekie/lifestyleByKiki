@@ -33,7 +33,7 @@
   line-height: 1;
 }
 #cssmenu > ul {
-  background: #78b657;
+  background: var(--main-bg-color);
 }
 #cssmenu > ul > li {
   float: left;
@@ -59,7 +59,7 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
-  background: #78b657;
+  background: var(--main-bg-color);
 
 }
 #cssmenu > ul > li.active > a {
@@ -96,7 +96,7 @@
 }
 #cssmenu > ul > li:hover > a::before,
 #cssmenu > ul > li > a:hover::before {
-  background: #78b657;
+  background: var(--main-bg-color);
 }
 #cssmenu.small-screen {
   width: 100%;
@@ -132,7 +132,7 @@
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: #78b657;
+  background: var(--main-bg-color);
 }
 #cssmenu.small-screen #menu-button:after {
   content: "";

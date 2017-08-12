@@ -1,4 +1,9 @@
 /* demo page styles */
+:root {
+  --main-bg-color: #78b870;
+}
+
+
 header {
 
 
@@ -11,7 +16,6 @@ header {
 body {
     background:#eee;
     padding:0;
-    background-image: url('../bg.jpg');
 
     max-width: 1000px;
     margin: auto;
